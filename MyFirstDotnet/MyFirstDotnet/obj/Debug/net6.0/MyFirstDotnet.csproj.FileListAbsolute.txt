@@ -1,0 +1,15 @@
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\bin\Debug\net6.0\MyFirstDotnet.exe
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\bin\Debug\net6.0\MyFirstDotnet.deps.json
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\bin\Debug\net6.0\MyFirstDotnet.runtimeconfig.json
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\bin\Debug\net6.0\MyFirstDotnet.dll
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\bin\Debug\net6.0\MyFirstDotnet.pdb
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\obj\Debug\net6.0\MyFirstDotnet.csproj.AssemblyReference.cache
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\obj\Debug\net6.0\MyFirstDotnet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\obj\Debug\net6.0\MyFirstDotnet.AssemblyInfoInputs.cache
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\obj\Debug\net6.0\MyFirstDotnet.AssemblyInfo.cs
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\obj\Debug\net6.0\MyFirstDotnet.csproj.CoreCompileInputs.cache
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\obj\Debug\net6.0\MyFirstDotnet.dll
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\obj\Debug\net6.0\refint\MyFirstDotnet.dll
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\obj\Debug\net6.0\MyFirstDotnet.pdb
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\obj\Debug\net6.0\MyFirstDotnet.genruntimeconfig.cache
+C:\Users\bsass\Revature\BrandonS\MyFirstDotnet\MyFirstDotnet\obj\Debug\net6.0\ref\MyFirstDotnet.dll
