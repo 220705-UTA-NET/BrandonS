@@ -1,8 +1,9 @@
 namespace Banking{
     class Transaction{
-        private double amount;
-        private string note;
-        private DateTime date;
+        public double amount;
+        public string note;
+        public DateTime date;
+        private int transId;
 
         public Transaction(double amount, DateTime date, string note){
             this.amount = amount;

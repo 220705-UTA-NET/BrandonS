@@ -5,9 +5,20 @@ namespace Banking{
         static void Main(string[] args){
             Account newAccount = new Account(1000,"Brandon");
             Account secondAccount =  new Account(500,"James");
+            Account thirdAccount = new Account(3000,"John");
 
             Console.WriteLine(newAccount.accountNumber.ToString());
             Console.WriteLine(secondAccount.accountNumber.ToString());
+
+            thirdAccount.accountNumber = 12345;
+            Console.WriteLine(thirdAccount.accountNumber.ToString());
+
+            secondAccount.deposit(150,"got paid");
+            secondAccount.deposit(50,"dinner with friends");
+            secondAccount.withdrawal(60,"new game");
+            secondAccount.withdrawal(20,"Lunch");
+
+            Console.WriteLine(secondAccount.getAccountHistory());
 
             // try{
             //     newAccount.deposit(1000);
