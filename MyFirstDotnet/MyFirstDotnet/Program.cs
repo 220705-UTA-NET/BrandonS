@@ -8,4 +8,17 @@
 // "" signifies a string literal
 // ; Endline character
 
-Console.WriteLine("Hello, World!");
+//Everything is an object
+//an object is a real world entity with state and behavior
+
+// Data Types
+int x = 5;
+float y = 5.5f;
+double z = 5.5;
+long a = 5;
+short b = 5;
+
+string integer = x.ToString();
+Console.WriteLine(x);
+Console.WriteLine("Hi Brandon");
+Console.ReadLine();
