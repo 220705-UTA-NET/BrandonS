@@ -1,7 +1,7 @@
 using System;
 
 namespace Banking{
-    class Account{
+    abstract class Account{
         // Fields and methods make up members
         // (access modifier) (type) (name) (initial value)
         protected double balance;
@@ -20,10 +20,10 @@ namespace Banking{
             accountNumberSeed++;
             this.owner = owner;
         }
-        public string getBalance(){
-            return balance.ToString();
+        public virtual string getBalance(){
+            return "From Account: " + balance.ToString();
         }
-        public void deposit(double amount, string note = ""){
+        public virtual void deposit(double amount, string note = ""){
             if (amount <= 0 ){
                 throw new ArgumentOutOfRangeException("invalid deposit amount");
             }
@@ -33,7 +33,7 @@ namespace Banking{
                 transactions.Add(deposit);
             }
         }
-        public void withdrawal(double amount, string note = ""){
+        public virtual void withdrawal(double amount, string note = ""){
             if(amount <= 0 || amount > balance){
                 throw new ArgumentOutOfRangeException("invalid withdrawal amount");
             }
@@ -43,11 +43,11 @@ namespace Banking{
                 transactions.Add(withdrawal);
             }
         }
-        public string getAccountHistory(){
+        public virtual string getAccountHistory(){
             var report = new System.Text.StringBuilder();
             report.AppendLine("Date\t\tAmount\t\tNote");
             foreach(var item in transactions){
-                Console.WriteLine("here");
+                //string interpolation
                 report.AppendLine($"{item.date.ToShortDateString()}\t{item.amount}\t{item.note}");
             }
             return report.ToString();

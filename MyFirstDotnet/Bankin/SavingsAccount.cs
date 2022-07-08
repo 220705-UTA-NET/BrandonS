@@ -10,6 +10,10 @@ namespace Banking{
         double payment = this.balance * interestRate;
         this.deposit(payment);
     }
+
+    public override string getBalance(){
+        return "From Savings Accounts: " + base.getBalance();
+    }
     // how to create a savings account from the account constructor
     }
 }

@@ -3,9 +3,9 @@
 namespace Banking{
     class Program{
         static void Main(string[] args){
-            Account newAccount = new Account(1000,"Brandon");
-            Account secondAccount =  new Account(500,"James");
-            Account thirdAccount = new Account(3000,"John");
+            Account newAccount = new SavingsAccount(1000,"Brandon");
+            Account secondAccount =  new SavingsAccount(500,"James");
+            Account thirdAccount = new SavingsAccount(3000,"John");
 
             Console.WriteLine(newAccount.accountNumber.ToString());
             Console.WriteLine(secondAccount.accountNumber.ToString());
@@ -19,6 +19,7 @@ namespace Banking{
             secondAccount.withdrawal(20,"Lunch");
 
             Console.WriteLine(secondAccount.getAccountHistory());
+            Console.WriteLine(secondAccount.getBalance());
 
             // try{
             //     newAccount.deposit(1000);
