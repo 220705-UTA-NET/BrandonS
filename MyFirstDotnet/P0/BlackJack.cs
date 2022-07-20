@@ -10,7 +10,7 @@ namespace P0{
             Console.WriteLine("Minimum bet will be $5");
             Console.WriteLine("Dealer will hit on soft 17");
             Console.WriteLine("BlackJack will payout 3:2");
-            Console.WriteLine("You are able to hit, stand, or double down");
+            Console.WriteLine("You are able to hit or stand");
             Console.WriteLine("How much would you like to put in your balance?\n");
 
             string response = Console.ReadLine();
@@ -32,10 +32,24 @@ namespace P0{
             while(playLoop){
                 Console.WriteLine("Player balance: " + balance.ToString() + "\n");
                 while(isValidBet){
+                    Console.WriteLine("Would you like to make a bet? (Y/N)");
+                    string better = Console.ReadLine();
+                    switch(better){
+                        case "Y":
+                            break;
+                        case "N":
+                            playLoop = false;
+                            isValidBet = false;
+                            Console.WriteLine("Thanks for playing!\n");
+                            break;
+                        default:
+                            Console.WriteLine("input not understood. Place your bet.");
+                            break;
+                    }
                     Console.WriteLine("Please place your bet!\n");
                     bet = int.Parse(Console.ReadLine());
                     if(bet < 5){
-                        Console.WriteLine("Bet must be greater than $5");
+                        Console.WriteLine("Bet must be greater than $5\n");
                     }
                     else if(bet > balance && balance > 5){
                         Console.WriteLine("Balance not large enough for bet size. Deposit more money? (Y/N)");
@@ -47,10 +61,10 @@ namespace P0{
                                 balance += depositAmount;
                                 break;
                             case "N":
-                                Console.WriteLine("Please choose a smaller bet size");
+                                Console.WriteLine("Please choose a smaller bet size\n");
                                 break;
                             default:
-                                Console.WriteLine("Response not understood. Please re-enter your bet");
+                                Console.WriteLine("Response not understood. Please re-enter your bet\n");
                                 break;
                         }
                     }
@@ -123,27 +137,54 @@ namespace P0{
                 }
                 playerHandValue = PlayerHit(playerHandValue, alternatePlayerValue, playerCards, initialDealerCard, random);
                 dealerHandValue = DealerHit(dealerHandValue, alternateDealerValue, playerHandValue, dealerCards, random);
-                if(playerBlackJack == true && dealerBlackJack != false){
-                    Console.WriteLine("You win!");
-                    balance += (2.5 * bet);
-                }
-                else if(playerBlackJack == true && dealerBlackJack == true){
-                    Console.WriteLine("You push.");
-                    balance += bet;
-                }
-                else if(playerBlackJack == false && dealerBlackJack == true){
-                    Console.WriteLine("Dealer wins. Better luck next time!");
-                }
-                else if(playerHandValue > dealerHandValue){
-                    Console.WriteLine("You win!");
-                    balance += (2* bet);
-                }
-                else if(playerHandValue == dealerHandValue){
-                    Console.WriteLine("You push.");
-                    balance += bet;
-                }
-                else{
-                    Console.WriteLine("Dealer wins. Better luck next time!");
+                if(playerHandValue <= 21){
+                    if(dealerHandValue > 21){
+                        if(playerBlackJack == true){
+                            Console.WriteLine("You win!\n");
+                            balance += (2.5 * bet);
+                        }
+                        else{
+                            Console.WriteLine("You win!\n");
+                            balance += (2* bet);
+                        }
+                    }
+                    else if(dealerHandValue == 21){
+                        if(dealerHandValue > playerHandValue){
+                            Console.WriteLine("You lose.\n");
+                        }
+                        else if(dealerHandValue == playerHandValue){
+                            if(dealerBlackJack == false && playerBlackJack == true){
+                                Console.WriteLine("You win!\n");
+                                balance += (2.5 * bet);
+                            }
+                            else if(dealerBlackJack == true && playerBlackJack == false){
+                                Console.WriteLine("You lose.\n");
+                            }
+                            else{
+                                Console.WriteLine("You push.\n");
+                                balance += bet;
+                            }
+                        }
+                    }
+                    else if(dealerHandValue < 21){
+                        if(dealerHandValue < playerHandValue){
+                            Console.WriteLine("You win!\n");
+                            if(playerBlackJack == true){
+                                balance += (2.5 * bet);
+                            }
+                            else{
+                                balance += (2* bet);
+                            }
+                        }
+                        else if(dealerHandValue > playerHandValue){
+                            Console.WriteLine("You lose.\n");
+                        }
+                        else if(dealerHandValue == playerHandValue){
+                                Console.WriteLine("You push.\n");
+                                balance += bet;
+                        }
+                    }
+
                 }
                 playerHandValue = 0;
                 dealerHandValue = 0;
@@ -156,17 +197,18 @@ namespace P0{
         private int PlayerHit(int playerHandValue, int alternateValue, List<string> playerCards, string dealerShowing, Random random){
             bool hitLoop = true;
             while(hitLoop){
-                if(playerHandValue == 21){
-                    break;
-                }
                 Console.Clear();
                 Console.WriteLine("Dealer is showing: " + dealerShowing + "\n");
                 Console.WriteLine("Player current hand: ");
                 foreach(string s in playerCards){
-                    Console.Write(s + "\n");
+                    Console.Write(s + " ");
                 }
+                Console.WriteLine();
                 Console.WriteLine("Player hand value: " + playerHandValue.ToString() + "\n");
-                Console.WriteLine("Would you like to hit, double down, or stand? (H/D/S)");
+                if(playerHandValue == 21){
+                    break;
+                }
+                Console.WriteLine("Would you like to hit or stand? (H/S)");
                 string response = Console.ReadLine();
                 var card = random.Next(0,13);
                 switch(response){
@@ -185,49 +227,21 @@ namespace P0{
                                 alternateValue = 0;
                             }
                             else{
-                                Console.WriteLine("You bust. Better luck next time");
-                                hitLoop = false;
-                            }
-                        }
-                        break;
-                    case "D":
-                        if(playerCards.Count == 2){
-                            playerCards.Add(deck[card]);
-                            playerHandValue += CardValue(deck[card]);
-                            if(playerHandValue > 21){
-                                if(alternateValue != 0){
-                                    if(CardValue(deck[card]) == 11){
-                                        alternateValue += 1;
-                                    }
-                                    else{
-                                        alternateValue += CardValue(deck[card]);
-                                    }
-                                    playerHandValue = alternateValue;
-                                    alternateValue = 0;
-                                }
-                                else{
-                                    Console.WriteLine("You bust. Better luck next time");
-                                    hitLoop = false;
-                                }
-                            }
-                            else{
-                                Console.WriteLine("Player current hand: ");
+                                Console.WriteLine("You bust. Better luck next time\n");
+                                Console.WriteLine("Player hand: ");
                                 foreach(string s in playerCards){
-                                    Console.Write(s + "\n");
+                                    Console.Write(s + " ");
                                 }
-                                Console.WriteLine("Player hand value: " + playerHandValue.ToString());
+                                Console.WriteLine();
                                 hitLoop = false;
                             }
-                        }
-                        else{
-                            Console.WriteLine("Sorry but you can only double down on your first hit");
                         }
                         break;
                     case "S":
                         hitLoop = false;
                         break;
                     default:
-                        Console.WriteLine("Input not understood, please hit, double down, or stand. (H/D/S)");
+                        Console.WriteLine("Input not understood, please hit or stand. (H/S)");
                         break;
                         
                 }
@@ -240,7 +254,11 @@ namespace P0{
                 return dealerHandValue;
             }
             while(hitLoop){
-                Console.WriteLine("Dealer current hand: " + dealerCards);
+                Console.WriteLine("Dealer current hand: ");
+                foreach(string s in dealerCards){
+                    Console.Write(s + " ");
+                }
+                Console.WriteLine();
                 Console.WriteLine("Dealer hand value: " + dealerHandValue.ToString() + "\n");
                 if(dealerHandValue < 17 || (dealerHandValue == 17 && dealerAlternateValue != 0)){
                     var card = random.Next(0,13);
@@ -249,6 +267,11 @@ namespace P0{
                     if(dealerHandValue > 21){
                         if(dealerAlternateValue == 0){
                             Console.WriteLine("Dealer busts!");
+                            Console.WriteLine("Dealer current hand: ");
+                            foreach(string s in dealerCards){
+                                Console.Write(s + " ");
+                            }
+                            Console.WriteLine();
                             hitLoop = false;
                         }
                         else if(dealerAlternateValue != 0){
