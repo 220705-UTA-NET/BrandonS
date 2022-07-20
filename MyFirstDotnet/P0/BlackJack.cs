@@ -46,6 +46,9 @@ namespace P0{
                             Console.WriteLine("input not understood. Place your bet.");
                             break;
                     }
+                    if(isValidBet == false){
+                        break;
+                    }
                     Console.WriteLine("Please place your bet!\n");
                     bet = int.Parse(Console.ReadLine());
                     if(bet < 5){
@@ -188,6 +191,8 @@ namespace P0{
                 }
                 playerHandValue = 0;
                 dealerHandValue = 0;
+                alternateDealerValue = 0;
+                alternatePlayerValue = 0;
                 playerCards = new List<string>();
                 dealerCards = new List<string>();
                 
@@ -216,7 +221,7 @@ namespace P0{
                         playerCards.Add(deck[card]);
                         playerHandValue += CardValue(deck[card]);
                         if(playerHandValue > 21){
-                            if(alternateValue != 0){
+                            if(alternateValue != 0 || CardValue(deck[card]) == 11){
                                 if(CardValue(deck[card]) == 11){
                                     alternateValue += 1;
                                 }
