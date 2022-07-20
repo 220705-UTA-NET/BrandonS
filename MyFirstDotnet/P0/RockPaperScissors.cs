@@ -7,7 +7,8 @@ namespace P0{
             var random = new Random();
             int computerWins = 0;
             int playerWins = 0;
-            while(computerWins < numWins && playerWins <numWins){
+            bool completion = true;
+            while(computerWins < numWins && playerWins <numWins && completion == true){
                 var range = random.Next(0,3);
                 Console.WriteLine("What would you like to throw (rock, paper, scissors)?");
                 string playerMove = Console.ReadLine();
@@ -25,6 +26,7 @@ namespace P0{
                             Console.WriteLine("The computer chose scissors. You win!");
                             playerWins += 1;
                         }
+                        Console.WriteLine($"Player Score: {playerWins}\nComputer Score:{computerWins}\n");
                         break;
                     case "paper":
                         if(computerMove == "rock"){
@@ -38,6 +40,7 @@ namespace P0{
                             Console.WriteLine("The computer chose scissors. Computer wins!");
                             computerWins += 1;
                         }
+                        Console.WriteLine($"Player Score: {playerWins}\nComputer Score:{computerWins}\n");
                         break;
                     case "scissors":
                         if(computerMove == "rock"){
@@ -51,17 +54,21 @@ namespace P0{
                         else if(computerMove == "scissors"){
                             Console.WriteLine("The computer chose scissors. Tie!");
                         }
+                        Console.WriteLine($"Player Score: {playerWins}\nComputer Score:{computerWins}\n");
+                        break;
+                    case "exit":
+                        Console.WriteLine("Exiting the game.\n");
+                        completion = false;
                         break;
                     default:
                         Console.WriteLine("Sorry the input was invalid please try again");
                         break;
                 }
-                Console.WriteLine($"Player Score: {playerWins}\nComputer Score:{computerWins}\n");
             }
-            if (computerWins > playerWins){
+            if (computerWins > playerWins && completion == true){
                 Console.WriteLine("The computer has won! Better luck next time!");
             }
-            else if(playerWins > computerWins){
+            else if(playerWins > computerWins && completion == true){
                 Console.WriteLine("You have won! Congratulations!");
             }
             Console.WriteLine("Thank you for playing!\n");
