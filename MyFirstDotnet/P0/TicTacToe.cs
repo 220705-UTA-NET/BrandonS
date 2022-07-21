@@ -7,6 +7,7 @@ namespace P0{
             char[,] board = new char[3,3];
             Initialize(board);
             bool loop = true;
+            int movecount = 0;
             while(loop){
                 Console.Clear();
                 Print(board);
@@ -15,7 +16,29 @@ namespace P0{
                 int row = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Please enter a column: ");
                 int col = Convert.ToInt32(Console.ReadLine());
-                if(board[row,col] != 'X' && board[row,col]!= 'O'){
+                if(movecount == 8){
+                    Console.WriteLine("Tie!");
+                    Console.WriteLine("Would you like to play again?(Y/N)\n");
+                    string tieResponse = Console.ReadLine();
+                    switch(tieResponse){
+                        case ("Y"):
+                            Console.WriteLine("Creating a new board!\n");
+                            movecount = 0;
+                            board = new char[3,3];
+                            Player = 'X';
+                            break;
+                        case ("N"):
+                            Console.WriteLine("Thank you for playing!\n");
+                            loop = false;
+                            break;
+                        default:
+                            Console.WriteLine("Input was not understood. Exiting the game\n");
+                            loop = false;
+                            break;
+                    }
+                    
+                }
+                else if(board[row,col] != 'X' && board[row,col]!= 'O'){
                     board[row,col] = Player;
                     if((Player == board[0,0] && Player == board[0,1] && Player == board[0,2])
                     || (Player == board[1,0] && Player == board[1,1] && Player == board[1,2])
@@ -32,6 +55,7 @@ namespace P0{
                         switch(response){
                             case ("Y"):
                                 Console.WriteLine("Creating a new board!\n");
+                                movecount = 0;
                                 board = new char[3,3];
                                 Player = 'X';
                                 break;
@@ -48,6 +72,7 @@ namespace P0{
                     else{
                         Print(board);
                         Player = ChangeTurn(Player);
+                        movecount ++;
                     }
                 }
             }
