@@ -1,5 +1,5 @@
 using GameReviewAPI.Data;
-
+// Http Connection
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
